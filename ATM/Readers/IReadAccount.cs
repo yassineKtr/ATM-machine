@@ -4,7 +4,7 @@ namespace ATM_machine.Readers
 {
     public interface IReadAccount
     {
-        Account? GetAccount(string accountNum);
+        Account GetAccount(string accountNum);
         List<Account> GetAccounts();
     }
 }

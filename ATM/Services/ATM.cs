@@ -5,16 +5,16 @@ namespace ATM_Machine
 {
     public class ATM : IATM
     {
-        private Account? _currentAccount;
+        private Account _currentAccount;
         private readonly IReadAccount _accountReader;
         public ATM(IReadAccount accountReader)
         {
             _currentAccount = null;
             _accountReader = accountReader;
         }
-        public Log LogIn(string accountNum, string pin)
+        public ProcessResult LogIn(string accountNum, string pin)
         {
-            var log = new Log();
+            var log = new ProcessResult();
             var account = _accountReader.GetAccount(accountNum);
             if (account == null)
             {
@@ -32,9 +32,9 @@ namespace ATM_Machine
             log.Result = true;
             return log;
         }
-        public Log Withdraw(decimal amount)
+        public ProcessResult Withdraw(decimal amount)
         {
-            var log = new Log();
+            var log = new ProcessResult();
             if (_currentAccount == null)
             {
                 log.Result = false;
@@ -57,9 +57,9 @@ namespace ATM_Machine
             log.Result = true;
             return log;
         }
-        public Log SendMoney(decimal amount, string accountNum)
+        public ProcessResult SendMoney(decimal amount, string accountNum)
         {
-            var log = new Log();
+            var log = new ProcessResult();
             if (_currentAccount == null)
             {
                 log.Result = false;

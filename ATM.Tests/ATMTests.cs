@@ -8,7 +8,7 @@ namespace ATM_Machine
     {
         private ServiceProvider _serviceProvider;
         private readonly IATM? _atm;
-        private readonly IReadAccount? _accountReader;
+        private readonly IReadAccount _accountReader;
         public ATMTests(TestFixture testFixture)
         {
             _serviceProvider = testFixture.ServiceProvider;

@@ -4,8 +4,8 @@ namespace ATM_Machine
 {
     public interface IATM
     {
-        Log LogIn(string accountNum, string pin);
-        Log SendMoney(decimal amount, string accountNum);
-        Log Withdraw(decimal amount);
+        ProcessResult LogIn(string accountNum, string pin);
+        ProcessResult SendMoney(decimal amount, string accountNum);
+        ProcessResult Withdraw(decimal amount);
     }
 }

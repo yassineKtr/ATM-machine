@@ -9,7 +9,7 @@ namespace ATM_machine.Readers
         {
             _data = data;
         }
-        public Account? GetAccount(string accountNum) => _data.GetAvailableAccounts().FirstOrDefault(x => x.AccountNumber == accountNum);
+        public Account GetAccount(string accountNum) => _data.GetAvailableAccounts().FirstOrDefault(x => x.AccountNumber == accountNum);
         public List<Account> GetAccounts() => _data.GetAvailableAccounts();
     }
 }

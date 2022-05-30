@@ -1,10 +1,10 @@
-﻿namespace ATM_Machine;
-public class AccountFixture : IDataRetriever
+﻿using ATM_Machine;
+using Microsoft.Extensions.DependencyInjection;
+namespace ATM.Tests;
+public class AccountFixture : TestFixture
 {
-    public List<Account> _accounts;
-    public AccountFixture()
-    {
-        _accounts = new List<Account>
+    public readonly IATM Atm;
+    public List<Account> Account = new List<Account>
             {
                 new Account
                 {
@@ -25,23 +25,25 @@ public class AccountFixture : IDataRetriever
                     AccountNumber = "000003",
                     AccountBalance = 2000,
                     AccountPin = "1111",
-                    Nationality ="nat"
+                    Nationality = "nat"
                 },
                 new Account
                 {
                     AccountNumber = "000004",
                     AccountBalance = 2000,
                     AccountPin = "0101",
-                    Nationality ="euro"
+                    Nationality = "euro"
                 },
                 new Account
                 {
                     AccountNumber = "000005",
                     AccountBalance = 2000,
                     AccountPin = "0202",
-                    Nationality ="usd"
+                    Nationality = "usd"
                 },
             };
+    public AccountFixture()
+    {
+        Atm = ServiceProvider.GetService<IATM>();
     }
-    public List<Account> GetAvailableAccounts() => _accounts;
 }

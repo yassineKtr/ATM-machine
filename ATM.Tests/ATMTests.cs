@@ -7,7 +7,7 @@ namespace ATM_Machine
     public class ATMTests : IClassFixture<TestFixture>
     {
         private ServiceProvider _serviceProvider;
-        private readonly IATM? _atm;
+        private readonly IATM _atm;
         private readonly IReadAccount _accountReader;
         public ATMTests(TestFixture testFixture)
         {

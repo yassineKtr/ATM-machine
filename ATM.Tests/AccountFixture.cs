@@ -8,37 +8,37 @@ public class AccountFixture : TestFixture
             {
                 new Account
                 {
-                    AccountNumber = "000001",
-                    AccountBalance = 2000,
-                    AccountPin = "1234",
+                    Number = "000001",
+                    Balance = 2000,
+                    Pin = "1234",
                     Nationality ="nat"
                 },
                 new Account
                 {
-                    AccountNumber = "000002",
-                    AccountBalance = 2000,
-                    AccountPin = "0000",
+                    Number = "000002",
+                    Balance = 2000,
+                    Pin = "0000",
                     Nationality ="nat"
                 },
                 new Account
                 {
-                    AccountNumber = "000003",
-                    AccountBalance = 2000,
-                    AccountPin = "1111",
+                    Number = "000003",
+                    Balance = 2000,
+                    Pin = "1111",
                     Nationality = "nat"
                 },
                 new Account
                 {
-                    AccountNumber = "000004",
-                    AccountBalance = 2000,
-                    AccountPin = "0101",
+                    Number = "000004",
+                    Balance = 2000,
+                    Pin = "0101",
                     Nationality = "euro"
                 },
                 new Account
                 {
-                    AccountNumber = "000005",
-                    AccountBalance = 2000,
-                    AccountPin = "0202",
+                    Number = "000005",
+                    Balance = 2000,
+                    Pin = "0202",
                     Nationality = "usd"
                 },
             };

@@ -64,8 +64,8 @@ namespace ATM_Machine
             var res = _accountFixture.Atm.Withdraw(1000);
             Assert.True(res?.Result);
             Assert.Null(res?.Message);
-            var account = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000001");
-            Assert.Equal(2000, account?.AccountBalance);
+            var account = _accountFixture.Account.FirstOrDefault(x => x.Number == "000001");
+            Assert.Equal(2000, account?.Balance);
         }
         [Fact]
         public void CannotSendMoneyIfNotLoggedIn()
@@ -107,34 +107,34 @@ namespace ATM_Machine
             var res = _accountFixture.Atm.SendMoney(1000, "000001", _accountFixture.Account);
             Assert.True(res?.Result);
             Assert.Null(res?.Message);
-            var account = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000002");
-            Assert.Equal(1000, account?.AccountBalance);
-            var receiver = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000001");
-            Assert.Equal(3000, receiver?.AccountBalance);
+            var account = _accountFixture.Account.FirstOrDefault(x => x.Number == "000002");
+            Assert.Equal(1000, account?.Balance);
+            var receiver = _accountFixture.Account.FirstOrDefault(x => x.Number == "000001");
+            Assert.Equal(3000, receiver?.Balance);
         }
         [Fact]
         public void CanSendMoneyInterNationalyWithConversionFromHomeToAbroad()
         {
             _accountFixture.Atm.LogIn("000003", "1111", _accountFixture.Account);
-            var receiver = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000004");
-            var newAmount = receiver?.AccountBalance + CurrencyConverter.Convert(receiver.Nationality, 1000);
+            var receiver = _accountFixture.Account.FirstOrDefault(x => x.Number == "000004");
+            var newAmount = receiver?.Balance + CurrencyConverter.Convert(receiver.Nationality, 1000);
             var res = _accountFixture.Atm.SendMoney(1000, "000004", _accountFixture.Account);
             Assert.True(res?.Result);
-            var account = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000003");
-            Assert.Equal(1000, account?.AccountBalance);
-            Assert.Equal(newAmount, receiver?.AccountBalance);
+            var account = _accountFixture.Account.FirstOrDefault(x => x.Number == "000003");
+            Assert.Equal(1000, account?.Balance);
+            Assert.Equal(newAmount, receiver?.Balance);
         }
         [Fact]
         public void CanSendMoneyInterNationalyWithConversionFromAbroadToHome()
         {
             _accountFixture.Atm.LogIn("000005", "0202", _accountFixture.Account);
-            var receiver = _accountFixture.Account.FirstOrDefault(x => x.AccountNumber == "000001");
-            var newAmount = receiver?.AccountBalance + CurrencyConverter.Convert(receiver.Nationality, 1000);
+            var receiver = _accountFixture.Account.FirstOrDefault(x => x.Number == "000001");
+            var newAmount = receiver?.Balance + CurrencyConverter.Convert(receiver.Nationality, 1000);
             var res = _accountFixture.Atm.SendMoney(1000, "000001", _accountFixture.Account);
             Assert.True(res?.Result);
-            var account = _accountFixture.Account.FirstOrDefault(x=>x.AccountNumber =="000005");
-            Assert.Equal(1000, account?.AccountBalance);
-            Assert.Equal(newAmount, receiver?.AccountBalance);
+            var account = _accountFixture.Account.FirstOrDefault(x=>x.Number =="000005");
+            Assert.Equal(1000, account?.Balance);
+            Assert.Equal(newAmount, receiver?.Balance);
         }       
     }
 }

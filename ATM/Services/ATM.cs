@@ -7,7 +7,7 @@ namespace ATM_Machine
         public ProcessResult LogIn(string accountNum, string pin, IList<Account> accounts)
         {
             var processResult = new ProcessResult();
-            var account = accounts.FirstOrDefault(x => x.AccountNumber == accountNum);
+            var account = accounts.FirstOrDefault(x => x.Number == accountNum);
             if (account == null)
             {
                 processResult.Result = false;
@@ -40,13 +40,13 @@ namespace ATM_Machine
                 processResult.Message = "Invalid amount";
                 return processResult;
             }
-            if (amount >= _currentAccount.AccountBalance)
+            if (amount >= _currentAccount.Balance)
             {
                 processResult.Result = false;
                 processResult.Message = "Insufficient funds";
                 return processResult;
             }
-            _currentAccount.AccountBalance -= amount;
+            _currentAccount.Balance -= amount;
             processResult.Result = true;
             return processResult;
         }
@@ -65,27 +65,27 @@ namespace ATM_Machine
                 processResult.Message = "Account number not valid";
                 return processResult;
             }
-            var receiver = accounts.FirstOrDefault(x => x.AccountNumber ==accountNum);
+            var receiver = accounts.FirstOrDefault(x => x.Number ==accountNum);
             if (receiver == null)
             {
                 processResult.Result = false;
                 processResult.Message = "Receiver not found";
                 return processResult;
             }
-            if (amount >= _currentAccount.AccountBalance)
+            if (amount >= _currentAccount.Balance)
             {
                 processResult.Result = false;
                 processResult.Message = "Insufficient funds";
                 return processResult;
             }
-            _currentAccount.AccountBalance -= amount;
+            _currentAccount.Balance -= amount;
             if (receiver.Nationality == _currentAccount.Nationality)
             {
-                receiver.AccountBalance += amount;
+                receiver.Balance += amount;
             }
             if (receiver.Nationality != _currentAccount.Nationality)
             {
-                receiver.AccountBalance += CurrencyConverter.Convert(receiver.Nationality, amount);
+                receiver.Balance += CurrencyConverter.Convert(receiver.Nationality, amount);
             }
             processResult.Result = true;
             return processResult;

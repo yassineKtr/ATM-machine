@@ -7,9 +7,9 @@ namespace ATM_Machine
         public ServiceProvider ServiceProvider { get; private set; }
         public TestFixture()
         {
-            var Services = new ServiceCollection();
-            Services.AddTransient<IATM,ATM>();
-            ServiceProvider = Services.BuildServiceProvider();
+            var services = new ServiceCollection();
+            services.AddTransient<IATM,ATM>();
+            ServiceProvider = services.BuildServiceProvider();
         }
     }
 }

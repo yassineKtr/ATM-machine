@@ -3,7 +3,7 @@
 namespace ATM_Machine;
 public static class CurrencyConverter
 {
-    private readonly static Dictionary<string, double> ConversionRates = new Dictionary<string, double>
+    private static readonly Dictionary<string, double> ConversionRates = new ()
     {
         {"euro",2 },
         {"usd",1.5 },

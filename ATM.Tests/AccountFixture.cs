@@ -4,7 +4,7 @@ namespace ATM.Tests;
 public class AccountFixture : TestFixture
 {
     public readonly IATM Atm;
-    public List<Account> Account = new List<Account>
+    public List<Account> Account = new ()
             {
                 new Account
                 {
